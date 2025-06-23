@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Aegis custom colors
+				aegis: {
+					primary: '#4F46E5',
+					secondary: '#7C3AED',
+					accent: '#06B6D4',
+					success: '#10B981',
+					warning: '#F59E0B',
+					danger: '#EF4444',
+					light: '#F8FAFC',
+					dark: '#1E293B'
 				}
 			},
 			borderRadius: {
@@ -84,11 +96,46 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'slide-up': {
+					'0%': {
+						transform: 'translateY(100%)'
+					},
+					'100%': {
+						transform: 'translateY(0)'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 5px rgba(79, 70, 229, 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 20px rgba(79, 70, 229, 0.8)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'slide-up': 'slide-up 0.3s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'aegis-gradient': 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)',
+				'aegis-gradient-light': 'linear-gradient(135deg, #EEF2FF 0%, #F3E8FF 100%)'
 			}
 		}
 	},
