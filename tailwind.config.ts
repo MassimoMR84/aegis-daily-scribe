@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Aegis custom colors
+				// Aegis custom colors actualizados a neutros
 				aegis: {
 					primary: '#4F46E5',
 					secondary: '#7C3AED',
 					accent: '#06B6D4',
 					success: '#10B981',
-					warning: '#F59E0B',
+					warning: '#F97316', // Cambio de amarillo a naranja
 					danger: '#EF4444',
 					light: '#F8FAFC',
 					dark: '#1E293B'

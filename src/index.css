@@ -140,7 +140,7 @@
   }
 
   .task-priority-medium {
-    @apply border-l-4 border-yellow-500 bg-yellow-50;
+    @apply border-l-4 border-orange-500 bg-orange-50;
   }
 
   .task-priority-low {

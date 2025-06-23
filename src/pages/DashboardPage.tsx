@@ -44,8 +44,8 @@ const DashboardPage = () => {
   const getProductivityStatus = () => {
     const avgRate = (completionRate + habitsCompletionRate) / 2;
     if (avgRate >= 80) return { status: 'Excelente', color: 'text-green-600', bgColor: 'bg-green-100' };
-    if (avgRate >= 60) return { status: 'Bien', color: 'text-yellow-600', bgColor: 'bg-yellow-100' };
-    if (avgRate >= 40) return { status: 'Regular', color: 'text-orange-600', bgColor: 'bg-orange-100' };
+    if (avgRate >= 60) return { status: 'Bien', color: 'text-orange-600', bgColor: 'bg-orange-100' };
+    if (avgRate >= 40) return { status: 'Regular', color: 'text-slate-600', bgColor: 'bg-slate-100' };
     return { status: 'Necesita atención', color: 'text-red-600', bgColor: 'bg-red-100' };
   };
 
@@ -157,7 +157,7 @@ const DashboardPage = () => {
                 <div key={task.id} className="flex items-center space-x-2 text-sm">
                   <div className={`w-2 h-2 rounded-full ${
                     task.priority === 'high' ? 'bg-red-500' :
-                    task.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
+                    task.priority === 'medium' ? 'bg-orange-500' : 'bg-green-500'
                   }`}></div>
                   <span className="flex-1 truncate">{task.title}</span>
                 </div>

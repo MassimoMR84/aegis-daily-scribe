@@ -11,6 +11,7 @@ import ChatPage from "./pages/ChatPage";
 import TasksPage from "./pages/TasksPage";
 import HabitsPage from "./pages/HabitsPage";
 import CalendarPage from "./pages/CalendarPage";
+import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,7 +31,7 @@ const App = () => (
               <Route path="/habits" element={<HabitsPage />} />
               <Route path="/calendar" element={<CalendarPage />} />
               <Route path="/stats" element={<DashboardPage />} />
-              <Route path="/settings" element={<DashboardPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
