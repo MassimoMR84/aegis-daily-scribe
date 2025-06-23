@@ -1,0 +1,101 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tasks         Task[]
+  habits        Habit[]
+  chatMessages  ChatMessage[]
+  calendarEvents CalendarEvent[]
+  userPreferences UserPreferences?
+
+  @@map("users")
+}
+
+model UserPreferences {
+  id              String  @id @default(cuid())
+  userId          String  @unique
+  notifications   Boolean @default(true)
+  autoSchedule    Boolean @default(true)
+  chaosThreshold  Int     @default(80)
+  workingHours    Json?   // { start: "09:00", end: "17:00" }
+  theme           String  @default("light")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model Task {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  priority      String    // high, medium, low
+  status        String    // pending, in-progress, completed
+  dueDate       DateTime?
+  estimatedTime Int?      // minutes
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  userId        String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("tasks")
+}
+
+model Habit {
+  id            String    @id @default(cuid())
+  title         String
+  description   String?
+  frequency     String    // daily, weekly, monthly
+  streak        Int       @default(0)
+  lastCompleted DateTime?
+  createdAt     DateTime  @default(now())
+  userId        String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("habits")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  content   String
+  sender    String   // user, aegis
+  type      String   @default("text") // text, suggestion, system
+  timestamp DateTime @default(now())
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("chat_messages")
+}
+
+model CalendarEvent {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  startTime   DateTime
+  endTime     DateTime
+  type        String   @default("event") // event, task, habit
+  relatedId   String?  // ID of related task/habit
+  createdAt   DateTime @default(now())
+  userId      String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("calendar_events")
+}

@@ -1,73 +1,207 @@
-# Welcome to your Lovable project
 
-## Project info
+# Aegis - Asistente Personal Inteligente
 
-**URL**: https://lovable.dev/projects/21fab42f-69db-4b23-a208-27625556dcd7
+Aegis es un asistente personal inteligente que te ayuda a gestionar tareas, hábitos y tu calendario de manera eficiente. Incluye un sistema de IA que se adapta a tu estilo de trabajo y puede activar un "Modo Caos" cuando detecta que estás saturado.
 
-## How can I edit this code?
+## 🚀 Características
 
-There are several ways of editing your application.
+- **Gestión de Tareas**: Organiza y prioriza tus tareas automáticamente
+- **Seguimiento de Hábitos**: Mantén tus hábitos diarios con streaks
+- **Chat con IA**: Aegis te asiste y da recomendaciones personalizadas
+- **Calendario Inteligente**: Planificación automática de tu tiempo
+- **Modo Caos**: Simplifica tu día cuando estás saturado
+- **Responsive Design**: Funciona en desktop y móvil
 
-**Use Lovable**
+## 🏗️ Arquitectura
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/21fab42f-69db-4b23-a208-27625556dcd7) and start prompting.
+El proyecto está dividido en dos partes principales:
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+aegis-app/
+├── frontend/          # React + Vite + TypeScript
+│   ├── src/
+│   ├── public/
+│   └── package.json
+├── backend/           # Node.js + Express + TypeScript
+│   ├── src/
+│   ├── prisma/
+│   └── package.json
+└── README.md
+```
 
-**Use your preferred IDE**
+## 🛠️ Tecnologías
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Frontend
+- **React 18** - Framework de UI
+- **TypeScript** - Tipado estático
+- **Vite** - Build tool y dev server
+- **Tailwind CSS** - Framework de CSS
+- **Shadcn/ui** - Componentes de UI
+- **React Router** - Navegación
+- **Tanstack Query** - Gestión de estado de servidor
+- **React Hook Form** - Manejo de formularios
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend
+- **Node.js** - Runtime de JavaScript
+- **Express** - Framework web
+- **TypeScript** - Tipado estático
+- **Prisma** - ORM y manejo de base de datos
+- **SQLite** - Base de datos (desarrollo)
+- **Socket.io** - WebSockets para chat en tiempo real
+- **Zod** - Validación de datos
+- **JWT** - Autenticación
 
-Follow these steps:
+## 🚀 Inicio Rápido
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerrequisitos
+- Node.js 18+ y npm
+- Git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Instalación
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. **Clonar el repositorio**
+```bash
+git clone <repository-url>
+cd aegis-app
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. **Configurar el Backend**
+```bash
+cd backend
+npm install
+cp .env.example .env
+npx prisma migrate dev
+npx prisma db seed
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+3. **Configurar el Frontend** (en otra terminal)
+```bash
+cd frontend
+npm install
+cp .env.example .env
+npm run dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+4. **Acceder a la aplicación**
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3001
 
-**Use GitHub Codespaces**
+## 📝 Scripts Disponibles
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Frontend
+```bash
+npm run dev          # Servidor de desarrollo
+npm run build        # Build para producción
+npm run preview      # Preview del build
+npm run lint         # Linter
+```
 
-## What technologies are used for this project?
+### Backend
+```bash
+npm run dev          # Servidor de desarrollo con nodemon
+npm run build        # Compilar TypeScript
+npm run start        # Ejecutar en producción
+npm run db:migrate   # Ejecutar migraciones de DB
+npm run db:seed      # Poblar base de datos
+```
 
-This project is built with:
+## 🔧 Configuración
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Variables de Entorno
 
-## How can I deploy this project?
+#### Frontend (.env)
+```
+VITE_API_URL=http://localhost:3001
+VITE_WS_URL=ws://localhost:3001
+```
 
-Simply open [Lovable](https://lovable.dev/projects/21fab42f-69db-4b23-a208-27625556dcd7) and click on Share -> Publish.
+#### Backend (.env)
+```
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-secret-key"
+PORT=3001
+NODE_ENV=development
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 📚 API Documentation
 
-Yes, you can!
+### Endpoints Principales
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+#### Autenticación
+- `POST /api/auth/login` - Iniciar sesión
+- `POST /api/auth/register` - Registrarse
+- `POST /api/auth/logout` - Cerrar sesión
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+#### Tareas
+- `GET /api/tasks` - Obtener todas las tareas
+- `POST /api/tasks` - Crear nueva tarea
+- `PUT /api/tasks/:id` - Actualizar tarea
+- `DELETE /api/tasks/:id` - Eliminar tarea
+
+#### Hábitos
+- `GET /api/habits` - Obtener todos los hábitos
+- `POST /api/habits` - Crear nuevo hábito
+- `PUT /api/habits/:id` - Actualizar hábito
+- `DELETE /api/habits/:id` - Eliminar hábito
+
+#### Chat
+- `GET /api/chat/messages` - Obtener historial de chat
+- `POST /api/chat/message` - Enviar mensaje a Aegis
+- WebSocket en `/chat` para mensajes en tiempo real
+
+## 🎨 Estructura del Código
+
+### Frontend
+```
+src/
+├── components/     # Componentes reutilizables
+│   ├── ui/        # Componentes base (shadcn/ui)
+│   └── Layout/    # Componentes de layout
+├── pages/         # Páginas principales
+├── hooks/         # Custom hooks
+├── contexts/      # Context providers
+├── types/         # Definiciones de tipos
+├── lib/          # Utilidades y configuración
+└── services/     # Servicios para API calls
+```
+
+### Backend
+```
+src/
+├── controllers/   # Controladores de rutas
+├── services/     # Lógica de negocio
+├── models/       # Modelos de datos
+├── routes/       # Definición de rutas
+├── middleware/   # Middleware personalizado
+├── utils/        # Utilidades
+└── types/        # Definiciones de tipos
+```
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 🙏 Agradecimientos
+
+- [Shadcn/ui](https://ui.shadcn.com/) por los componentes de UI
+- [Lucide React](https://lucide.dev/) por los iconos
+- [Tailwind CSS](https://tailwindcss.com/) por el framework de CSS
+
+## 📞 Soporte
+
+Si tienes preguntas o necesitas ayuda, puedes:
+- Abrir un issue en GitHub
+- Contactar al equipo de desarrollo
+
+---
+
+**Aegis** - Tu asistente personal inteligente 🤖✨
